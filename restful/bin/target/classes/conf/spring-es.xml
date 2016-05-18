@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	 xmlns:es="http://www.pilato.fr/schema/elasticsearch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		 http://www.pilato.fr/schema/elasticsearch http://www.pilato.fr/schema/elasticsearch/elasticsearch-0.3.xsd">
+
+	<context:component-scan base-package="com.elasticsearch"/>
+<!-- 	<context:annotation-config/> -->
+<!-- 	<context:property-placeholder location="classpath:jdbc.properties"/> -->
+<!-- 	 <bean id="propertyConfigurer" -->
+<!-- 	    class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!-- 	    <property name="location" value="classpath:jdbc.properties" /> -->
+<!--   	</bean> -->
+<!--   <util:map id="es"> -->
+<!--   	<entry key="cluster.name" value="elasticsearch"></entry> -->
+<!--   </util:map> -->
+<!--   <es:client id="client" properties="es" esNodes="127.0.0.1:9300"/> -->
+  
+<!--   <bean id="elasticsearchTemplate" class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate"> -->
+<!-- 		<constructor-arg name="client" ref="client"></constructor-arg> -->
+<!--   </bean> -->
+
+<bean id="client" class="com.elasticsearch.client.ESServiceManager" init-method="build">
+	<property name="name" value="elasticsearch"></property>
+	<property name="host" value="127.0.0.1"></property>
+	<property name="port" value="9300"></property>
+</bean>
+</beans>

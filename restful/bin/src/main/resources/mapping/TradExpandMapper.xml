@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="TradExpandMapper">
+	<resultMap type="com.web.pojo.Demo" id="BaseResultMap">
+		<result column="USERNAME" property="userName" jdbcType="VARCHAR"/>
+		<result column="HOSTNAME" property="hostName" jdbcType="VARCHAR"/>
+		<result column="USERIP" property="userIP" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="trad_expand_select" resultMap="BaseResultMap" parameterType="java.util.Map">
+	SELECT HOSTNAME,USERNAME,USERIP FROM HANDLELOG
+    </select>
+    
+</mapper>

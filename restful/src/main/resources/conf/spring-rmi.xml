@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="zkService" class="com.zook.api.ZKService">
+		<property name="remotes">
+			<list>
+				<!-- 交易相关服务 -->
+				<ref bean="transService" />
+				<!-- 商户服务 -->
+<!-- 				<ref bean="merchantService" /> -->
+<!-- 				报表服务 -->
+<!-- 				<ref bean="reportService" /> -->
+			</list>
+		</property>
+		<property name="ip" value="#{T(com.prop.RmiProp).getValue('rmi.ip')}"></property>
+		<property name="app" value="#{T(com.prop.RmiProp).getValue('rmi.app')}"></property>
+	</bean>
+
+	<bean class="com.zook.api.ZKServerManager" init-method="publish">
+		<property name="hosts" value="#{T(com.prop.ZKProp).getValue('zk.host')}"></property>
+		<property name="zkService" ref="zkService"></property>
+	</bean>
+	
+	<bean id="clientManage" class="com.zook.api.ZKClientManager" scope="singleton">
+		<constructor-arg name="hosts" value="127.0.0.1"/>
+<!-- <constructor-arg name="hosts" value="172.28.247.53,172.28.247.54,172.28.247.57"/> -->
+		<constructor-arg name="zkNode" value="zookeeper"/>
+	</bean>
+</beans>

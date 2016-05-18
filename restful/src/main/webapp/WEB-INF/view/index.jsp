@@ -16,7 +16,6 @@ ${name.publicationDate}
 
 <c:forEach items="${items}" var="a">
 	date:<input type="text" value="${a.publicationDate}">
-
 </c:forEach>
 </body>
 </html>
